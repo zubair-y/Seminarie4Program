@@ -15,7 +15,6 @@ public class TotalRevenueFileOutput implements Observer{
      * Writes the total revenue to the text file made
      * @param totalRevenue the current total revenue
      */
-
     @Override
     public void update(int totalRevenue) {
         try{
@@ -27,4 +26,5 @@ public class TotalRevenueFileOutput implements Observer{
             e.printStackTrace();
         }
     }
+
 }

@@ -40,9 +40,11 @@ public class Main {
                         } catch (ItemNotFoundException e) {
                             System.out.println(e.getMessage());
                             System.out.println("LOG: ItemNotFoundException was thrown due to " + e.getMessage());
+                            System.out.println("LOG: stacktrace: "+ e.getStackTrace());
                         } catch (ServerConnectionFailException p) {
                             System.out.println(p.getMessage());
                             System.out.println("LOG: Could not add item to sale due to server being down");
+                            System.out.println("LOG: stacktrace: "+ p.getStackTrace());
                         }
                         break;
 
@@ -52,9 +54,11 @@ public class Main {
                         } catch (ItemNotFoundException e) {
                             System.out.println(e.getMessage());
                             System.out.println("LOG: ItemNotFoundException was thrown due to " + e.getMessage());
+                            System.out.println("LOG: stacktrace: "+ e.getStackTrace());
                         } catch (ServerConnectionFailException p) {
                             System.out.println(p.getMessage());
                             System.out.println("LOG: Could not add item to sale due to server being down");
+                            System.out.println("LOG: stacktrace: "+ p.getStackTrace());
                         }
                         break;
 
@@ -64,9 +68,11 @@ public class Main {
                         } catch (ItemNotFoundException e) {
                             System.out.println(e.getMessage());
                             System.out.println("LOG: ItemNotFoundException was thrown due to " + e.getMessage());
+                            System.out.println("LOG: stacktrace: "+ e.getStackTrace());
                         } catch (ServerConnectionFailException p) {
                             System.out.println(p.getMessage());
                             System.out.println("LOG: Could not add item to sale due to server being down");
+                            System.out.println("LOG: stacktrace: "+ p.getStackTrace());
                         }
 
                         break;
@@ -96,13 +102,15 @@ public class Main {
 
                     default:
                         try {
-                            contr.addItemToSale(0);
+                            contr.addItemToSale(Integer.parseInt(answerForSale));
                         } catch (ItemNotFoundException e) {
                             System.out.println(e.getMessage());
                             System.out.println("LOG: ItemNotFoundException was thrown due to " + e.getMessage());
+                            System.out.println("LOG: stacktrace: "+ e.getStackTrace());
                         } catch (ServerConnectionFailException p) {
                             System.out.println(p.getMessage());
                             System.out.println("LOG: Could not add item to sale due to server being down");
+                            System.out.println("LOG: stacktrace: "+ p.getStackTrace());
                         }
                         break;
                 }

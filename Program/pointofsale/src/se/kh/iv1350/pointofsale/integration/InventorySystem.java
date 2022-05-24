@@ -3,7 +3,7 @@ package se.kh.iv1350.pointofsale.integration;
 import se.kh.iv1350.pointofsale.exceptions.ItemNotFoundException;
 import se.kh.iv1350.pointofsale.exceptions.ServerConnectionFailException;
 import se.kh.iv1350.pointofsale.dto.ItemDTO;
-import se.kh.iv1350.pointofsale.integration.productFactory.Factory;
+import se.kh.iv1350.pointofsale.integration.productFactory.ProductFactory;
 import se.kh.iv1350.pointofsale.model.Sale;
 
 
@@ -16,12 +16,12 @@ import java.util.ArrayList;
 public class InventorySystem {
     private int meatballsLeft = 100;
     private int pringlesLeft = 100;
-    private Factory factory;
+    private ProductFactory factory;
 
     private static final InventorySystem onlyInstanceOfInventorySystem = new InventorySystem();
 
     private InventorySystem() {
-        factory = new Factory();
+        factory = new ProductFactory();
     }
 
     public static InventorySystem getInstance() {
@@ -39,6 +39,8 @@ public class InventorySystem {
      * Database of hardcoded items in the shop, method return an itemDTO.
      * @param scannedItemId Barcode for item, this will be a pre-set integer.
      * @return ItemDTO
+     * @throws ItemNotFoundException when the searched scannedItemID does not match any existing itemID's
+     * @throws ServerConnectionFailException when the connection to the database fails
      */
     public ItemDTO retrieveItemInformation(int scannedItemId) throws ItemNotFoundException, ServerConnectionFailException {
         String name;
@@ -48,23 +50,15 @@ public class InventorySystem {
         int tax;
         ItemDTO itemDTO;
 
-        switch(scannedItemId)
-        {
-            case 1:
-                itemDTO = factory.getProduct(1);
-            break;
+        itemDTO = factory.getProduct(scannedItemId);
 
+        if (scannedItemId == 3)
+            throw new ServerConnectionFailException("The server is currently not running, please try again later");
+        else if (itemDTO == null)
+            throw new ItemNotFoundException("Item with itemID: "+ scannedItemId + " does not exist");
+        
+        return itemDTO;
 
-            case 2:
-                itemDTO = factory.getProduct(2);
-            break;
-
-            case 3: throw new ServerConnectionFailException("The server is currently not running, please try again later");
-
-            default: throw new ItemNotFoundException("Item with itemID: "+ scannedItemId + " does not exist");
-
-        }
-        return  itemDTO;
     }
 
     /**

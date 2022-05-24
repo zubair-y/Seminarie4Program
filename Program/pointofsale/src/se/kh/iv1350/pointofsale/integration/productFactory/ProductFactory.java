@@ -5,17 +5,17 @@ import se.kh.iv1350.pointofsale.dto.ItemDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Factory {
-    private Meatball meatball;
-    private Pringles pringles;
+public class ProductFactory {
+    private ItemDTO meatball;
+    private ItemDTO pringles;
     private List <Product> products = new ArrayList<Product>();
 
     /**
      * The class constructor
      */
-    public Factory () {
-        meatball = new Meatball("Meatball", 1, "Food", 50, 5);
-        pringles = new Pringles("Pringles", 2, "Food", 20, 2);
+    public ProductFactory() {
+        meatball = new ItemDTO("Meatball", 1, "Food", 50, 5);
+        pringles = new ItemDTO("Pringles", 2, "Food", 20, 2);
         products.add(meatball);
         products.add(pringles);
     }

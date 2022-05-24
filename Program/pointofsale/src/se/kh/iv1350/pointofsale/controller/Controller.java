@@ -44,6 +44,8 @@ public class Controller {
     /**
      * Retrieves information from inventory system and adds that item to the sale.
      * @param scannedItemId barcode from scanned item, for this application it will be a pre-set integer.
+     * @throws ItemNotFoundException when the searched scannedItemID does not match any existing itemID's
+     * @throws ServerConnectionFailException when the connection to the database fails
      */
     public void addItemToSale(int scannedItemId) throws ItemNotFoundException, ServerConnectionFailException {
         ItemDTO itemDTO = inventorySystem.retrieveItemInformation(scannedItemId);
@@ -94,10 +96,9 @@ public class Controller {
         sale.printReceipt(printer, paymentAmount);
     }
 
-    public void attach (Observer obsView, Observer obsFile)
+    public void attach (Observer obs)
     {
-        accountingSystem.attach(obsView);
-        accountingSystem.attach(obsFile);
+        accountingSystem.attach(obs);
     }
 
 

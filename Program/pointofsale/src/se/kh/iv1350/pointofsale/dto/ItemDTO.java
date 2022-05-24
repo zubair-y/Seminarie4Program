@@ -1,9 +1,11 @@
 package se.kh.iv1350.pointofsale.dto;
 
+import se.kh.iv1350.pointofsale.integration.productFactory.Product;
+
 /**
  * DTO created to make parameterlists shorter.
  */
-public class ItemDTO {
+public class ItemDTO implements Product {
     private String name;
 
     public String getName() {
@@ -46,5 +48,10 @@ public class ItemDTO {
         this.description = description;
         this.price = price;
         this.tax = tax;
+    }
+
+    @Override
+    public ItemDTO getDTO() {
+        return this;
     }
 }
