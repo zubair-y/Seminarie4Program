@@ -43,11 +43,6 @@ public class InventorySystem {
      * @throws ServerConnectionFailException when the connection to the database fails
      */
     public ItemDTO retrieveItemInformation(int scannedItemId) throws ItemNotFoundException, ServerConnectionFailException {
-        String name;
-        int id;
-        String description;
-        int price;
-        int tax;
         ItemDTO itemDTO;
 
         itemDTO = factory.getProduct(scannedItemId);
